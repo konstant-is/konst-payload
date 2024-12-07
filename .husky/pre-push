@@ -1,26 +1,59 @@
-bash << EOF
-set -e # Exit immediately if any command fails
+#!/bin/bash
+set -e
+trap 'log "An error occurred. Exiting script."; exit 1' ERR
 
-echo "Running build process..."
-if ! pnpm build; then
-  echo ""
-  echo "Build failed. Aborting push."
-  exit 1  # Exit with a failure code
+log() {
+  echo "$(date +"%Y-%m-%d %H:%M:%S") - $1"
+}
+
+is_tag_push() {
+  if git rev-parse --verify HEAD >/dev/null 2>&1; then
+    CURRENT_REF=$(git symbolic-ref -q HEAD || git describe --tags --exact-match)
+    if [[ "$CURRENT_REF" =~ ^refs/tags/ ]]; then
+      return 0
+    fi
+  fi
+  return 1
+}
+
+run_build() {
+  log "Running build process..."
+  if ! pnpm build; then
+    log "Build failed. Aborting push."
+    exit 1
+  fi
+  log "Build succeeded."
+}
+
+commit_dist_changes() {
+  if [ -n "$(git status dist --porcelain)" ]; then
+    log "Changes detected in 'dist' folder. Committing..."
+    git add dist
+    git commit -m "chore: update dist [auto-generated]"
+  else
+    log "No changes in 'dist'. Skipping commit."
+  fi
+}
+
+bump_version() {
+  log "Bumping version..."
+  pnpm ci:versionBump
+}
+
+log_summary() {
+  log "Script completed successfully."
+  log "Build: Completed"
+  log "Dist Changes: $(git status dist --porcelain | wc -l) files updated"
+  log "Version Bumped: $(pnpm run ci:getVersion)"
+}
+
+# Main script execution
+if is_tag_push; then
+  log "Tag push detected. Ignoring build process."
+  exit 0
 fi
 
-# Check for changes in the dist folder
-echo ""
-if [ -n "$(git status dist --porcelain)" ]; then
-  echo "Changes detected in 'dist' folder. Committing..."
-  git add dist
-  git commit -m "chore: update dist [auto-generated]"
-else
-  echo "No changes in 'dist'. Skipping commit."
-fi
-echo ""
-echo ""
-
-pnpm ci:versionBump
-EOF
-
-# node .husky/pre-push.js
+run_build
+commit_dist_changes
+bump_version
+log_summary
