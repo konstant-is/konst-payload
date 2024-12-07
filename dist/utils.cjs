@@ -32,9 +32,8 @@ __export(utils_exports, {
 module.exports = __toCommonJS(utils_exports);
 
 // src/lib/createConfig.ts
-var createCollectionConfig = (slug, config) => {
+var createCollectionConfig = (config) => {
   return {
-    slug,
     access: {
       read: () => true,
       ...config.access
@@ -42,9 +41,8 @@ var createCollectionConfig = (slug, config) => {
     ...config
   };
 };
-var createGlobalConfig = (slug, config) => {
+var createGlobalConfig = (config) => {
   return {
-    slug,
     access: {
       read: () => true,
       ...config.access
@@ -53,9 +51,10 @@ var createGlobalConfig = (slug, config) => {
   };
 };
 var createBlock = (block) => {
+  const fallbackInterfaceName = () => block.slug.includes("Block") ? block.slug : `${block.slug}Block`;
   return {
     ...block,
-    interfaceName: block?.interfaceName || `${block?.slug}Block`
+    interfaceName: block?.interfaceName || fallbackInterfaceName()
   };
 };
 

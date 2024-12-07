@@ -1,8 +1,8 @@
 import { CollectionConfig, GlobalConfig, Block } from 'payload';
 export { C as CreateFieldProps, c as createField } from './createField-CvxlUHg2.cjs';
 
-declare const createCollectionConfig: (slug: string, config: Omit<CollectionConfig, "slug">) => CollectionConfig;
-declare const createGlobalConfig: (slug: string, config: Omit<GlobalConfig, "slug">) => GlobalConfig;
+declare const createCollectionConfig: (config: CollectionConfig) => CollectionConfig;
+declare const createGlobalConfig: (config: GlobalConfig) => GlobalConfig;
 declare const createBlock: (block: Block) => Block;
 
 type BlockConfig = Record<string, (props: unknown) => Block>;

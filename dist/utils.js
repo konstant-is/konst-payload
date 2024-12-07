@@ -7,7 +7,7 @@ import {
   createGlobalConfig,
   deepMerge,
   isObject
-} from "./chunk-YTPJUXBB.js";
+} from "./chunk-4JYN5NNR.js";
 export {
   blockBuilder,
   blockBuilderHelper,
