@@ -21,7 +21,7 @@
     "clean": "rm -rf dist",
     "prepare": "husky",
     "ci:versionBump": "pnpm version patch",
-    "ci:getVersion": "node -p \"require('./package.json').version\""
+    "ci:getVersion": "node -p \"require('./package.json').version\" --silent"
   },
   "dependencies": {
     "@payloadcms/next": "latest",
