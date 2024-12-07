@@ -2,7 +2,11 @@ bash << EOF
 set -e
 
 echo "Running build process..."
-pnpm build
+if ! pnpm build; then
+  echo ""
+  echo "Build failed. Aborting push."
+  exit 1  # Exit with a failure code
+fi
 
 # Check for changes in the dist folder
 echo ""
