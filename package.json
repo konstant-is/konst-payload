@@ -13,9 +13,7 @@
     "./components": "./dist/components.js"
   },
   "files": [
-    "src",
     "dist",
-    "README.md"
   ],
   "scripts": {
     "build": "pnpm clean && tsup",
