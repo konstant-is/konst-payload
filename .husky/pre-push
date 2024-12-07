@@ -38,7 +38,7 @@ commit_dist_changes() {
 bump_version() {
   log "Bumping version..."
   pnpm run ci:versionBump
-  log ""
+  echo ""
 }
 
 log_summary() {
@@ -48,8 +48,8 @@ log_summary() {
   log "Dist Changes: $(git status dist --porcelain | wc -l) files updated"
   VERSION=$(node -p "require('./package.json').version")
   log "Version Bumped: $VERSION"
-  log ""
-  log ""
+  echo ""
+  echo ""
 }
 
 # Main script execution
