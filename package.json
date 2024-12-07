@@ -19,7 +19,8 @@
     "build": "pnpm clean && tsup",
     "dev": "tsup --watch",
     "clean": "rm -rf dist",
-    "prepare": "husky"
+    "prepare": "husky",
+    "ci:versionBump": "pnpm version patch"
   },
   "dependencies": {
     "@payloadcms/next": "latest",

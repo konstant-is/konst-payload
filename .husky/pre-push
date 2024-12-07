@@ -1,5 +1,5 @@
 bash << EOF
-set -e
+set -e # Exit immediately if any command fails
 
 echo "Running build process..."
 if ! pnpm build; then
@@ -19,4 +19,8 @@ else
 fi
 echo ""
 echo ""
+
+pnpm ci:versionBump
 EOF
+
+# node .husky/pre-push.js
