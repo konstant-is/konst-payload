@@ -13,11 +13,9 @@ export const createCollectionConfig = (
 };
 
 export const createGlobalConfig = (
-  slug: string,
-  config: Omit<GlobalConfig, "slug">
+  config: GlobalConfig
 ): GlobalConfig => {
   return {
-    slug,
     access: {
       read: () => true,
       ...config.access,
@@ -38,8 +36,9 @@ export const createGlobalConfig = (
 // };
 
 export const createBlock = (block: Block): Block => {
+  const fallbackInterfaceName = () => block.slug.includes("Block") ? block.slug : `${block.slug}Block`;  
   return {
     ...block,
-    interfaceName: block?.interfaceName || `${block?.slug}Block`,
+    interfaceName: block?.interfaceName || fallbackInterfaceName(),
   };
 };
