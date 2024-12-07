@@ -42,7 +42,7 @@ bump_version() {
 }
 
 log_summary() {
-  log ""
+  echo ""
   log "Script completed successfully."
   log "Build: Completed"
   log "Dist Changes: $(git status dist --porcelain | wc -l) files updated"
