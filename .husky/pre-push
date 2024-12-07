@@ -5,6 +5,7 @@ echo "Running build process..."
 pnpm build
 
 # Check for changes in the dist folder
+echo ""
 if [ -n "$(git status dist --porcelain)" ]; then
   echo "Changes detected in 'dist' folder. Committing..."
   git add dist
@@ -12,4 +13,6 @@ if [ -n "$(git status dist --porcelain)" ]; then
 else
   echo "No changes in 'dist'. Skipping commit."
 fi
+echo ""
+echo ""
 EOF
