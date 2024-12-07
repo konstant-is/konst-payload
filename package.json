@@ -13,7 +13,7 @@
     "./components": "./dist/components.js"
   },
   "files": [
-    "dist",
+    "dist"
   ],
   "scripts": {
     "build": "pnpm clean && tsup",

@@ -1,11 +1,9 @@
 import { Block, CollectionConfig, GlobalConfig } from "payload";
 
 export const createCollectionConfig = (
-  slug: string,
-  config: Omit<CollectionConfig, "slug">
+  config: CollectionConfig
 ): CollectionConfig => {
   return {
-    slug,
     access: {
       read: () => true,
       ...config.access,
