@@ -53,6 +53,9 @@ devDependencies:
   esbuild-sass-plugin:
     specifier: ^3.3.1
     version: 3.3.1(esbuild@0.24.0)(sass-embedded@1.82.0)
+  husky:
+    specifier: ^9.1.7
+    version: 9.1.7
   prettier:
     specifier: ^3.2.5
     version: 3.4.2
@@ -2643,6 +2646,12 @@ packages:
     resolution: {integrity: sha512-oUExvfNckrpTpDazph7kNG8sQi5au3BeTo0idaZFXEhTaJKu7GNJCLHI0rYY2wljm548MSTM+Ljj/c6anqu2zQ==}
     engines: {node: '>= 0.4.0'}
     dev: false
+
+  /husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
+    dev: true
 
   /ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}

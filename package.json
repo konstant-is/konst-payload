@@ -18,7 +18,8 @@
   "scripts": {
     "build": "pnpm clean && tsup",
     "dev": "tsup --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepare": "husky"
   },
   "dependencies": {
     "@payloadcms/next": "latest",
@@ -36,8 +37,9 @@
     "@types/node": "^22.5.4",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
-    "prettier": "^3.2.5",
     "esbuild-sass-plugin": "^3.3.1",
+    "husky": "^9.1.7",
+    "prettier": "^3.2.5",
     "sass": "^1.81.0",
     "tsup": "^8.3.5",
     "typescript": "latest"
