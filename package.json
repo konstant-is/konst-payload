@@ -20,7 +20,8 @@
     "dev": "tsup --watch",
     "clean": "rm -rf dist",
     "prepare": "husky",
-    "ci:versionBump": "pnpm version patch"
+    "ci:versionBump": "pnpm version patch",
+    "ci:getVersion": "node -p \"require('./package.json').version\""
   },
   "dependencies": {
     "@payloadcms/next": "latest",
