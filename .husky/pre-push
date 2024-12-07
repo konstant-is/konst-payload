@@ -44,7 +44,8 @@ log_summary() {
   log "Script completed successfully."
   log "Build: Completed"
   log "Dist Changes: $(git status dist --porcelain | wc -l) files updated"
-  log "Version Bumped: $(pnpm run ci:getVersion)"
+  VERSION=$(node -p "require('./package.json').version")
+  log "Version Bumped: $VERSION"
 }
 
 # Main script execution
