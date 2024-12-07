@@ -37,7 +37,7 @@ commit_dist_changes() {
 
 bump_version() {
   log "Bumping version..."
-  pnpm ci:versionBump
+  pnpm run ci:versionBump
 }
 
 log_summary() {
