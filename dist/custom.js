@@ -13,7 +13,7 @@ import {
   rowField,
   selectField,
   textField
-} from "./chunk-QGANM32X.js";
+} from "./chunk-L66BIA32.js";
 import {
   createField,
   deepMerge
@@ -109,7 +109,7 @@ var linkOptions = {
     value: "custom"
   }
 };
-var linkField = ({ overrides = {} } = {}) => {
+var linkField = createField((props) => {
   const options = rowField({
     fields: [
       radioField({
@@ -133,8 +133,32 @@ var linkField = ({ overrides = {} } = {}) => {
       })
     ]
   });
+  const appearance = selectField({
+    name: "appearance",
+    label: "Appearance",
+    defaultValue: "default",
+    options: [
+      {
+        label: "Default",
+        value: "default"
+      },
+      {
+        label: "Button",
+        value: "button"
+      },
+      {
+        label: "CTA",
+        value: "cta"
+      },
+      {
+        label: "Link",
+        value: "link"
+      }
+    ]
+  });
   const types = [
     internalLinkField({
+      relationTo: props.relationTo,
       condition: (_, siblingData) => siblingData?.type === "reference"
     }),
     externalLinkField({
@@ -151,10 +175,10 @@ var linkField = ({ overrides = {} } = {}) => {
     admin: {
       hideGutter: true
     },
-    fields: [options, ...types, label]
+    fields: [options, ...types, label, appearance]
   });
-  return deepMerge(field, overrides);
-};
+  return deepMerge(field, props.overrides);
+});
 var externalLinkField = createField((props) => {
   const field = textField({
     name: "url",
@@ -175,7 +199,7 @@ var internalLinkField = createField((props) => {
     },
     label: props.label || "Document to link to",
     maxDepth: 1,
-    relationTo: ["pages"],
+    relationTo: props.relationTo,
     required: props.required || true
   });
   return field;

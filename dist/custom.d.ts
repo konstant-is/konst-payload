@@ -15,11 +15,10 @@ declare const addressField: (props?: CreateFieldProps<{
     hideFields?: FieldKeys[];
 }>) => payload.Field;
 
-type LinkType = (options?: {
-    disableLabel?: boolean;
-    overrides?: Record<string, unknown>;
-}) => Field;
-declare const linkField: LinkType;
+declare const linkField: (props?: CreateFieldProps<{
+    relationTo: string | string[];
+    appearance?: "default" | "button" | "cta" | "link" | "custom";
+}>) => Field;
 declare const externalLinkField: (props?: {
     overrides?: Record<string, unknown>;
     fields?: Field[];
@@ -32,18 +31,9 @@ declare const externalLinkField: (props?: {
     description?: string;
     localized?: boolean;
 }) => Field;
-declare const internalLinkField: (props?: {
-    overrides?: Record<string, unknown>;
-    fields?: Field[];
-    required?: boolean;
-    label?: string;
-    name?: string;
-    condition?: (data: any, siblingData: any) => boolean;
-    hideGutter?: boolean;
-    hidden?: boolean;
-    description?: string;
-    localized?: boolean;
-}) => Field;
+declare const internalLinkField: (props?: CreateFieldProps<{
+    relationTo: string | string[];
+}>) => Field;
 
 declare const formatSlugHook: (fallback: string) => FieldHook;
 type Overrides = {
