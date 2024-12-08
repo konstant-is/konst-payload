@@ -15,9 +15,10 @@ declare const addressField: (props?: CreateFieldProps<{
     hideFields?: FieldKeys[];
 }>) => payload.Field;
 
+type LinkAppearance = "default" | "button" | "cta" | "link" | "custom";
 declare const linkField: (props?: CreateFieldProps<{
     relationTo: string | string[];
-    appearance?: "default" | "button" | "cta" | "link" | "custom";
+    appearance?: LinkAppearance;
 }>) => Field;
 declare const externalLinkField: (props?: {
     overrides?: Record<string, unknown>;

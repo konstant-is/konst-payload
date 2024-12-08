@@ -289,6 +289,28 @@ var addressField = createField2((props) => {
 });
 
 // src/custom/linkField.ts
+var linkAppearanceOptions = {
+  default: {
+    label: "Default",
+    value: "default"
+  },
+  button: {
+    label: "Button",
+    value: "button"
+  },
+  cta: {
+    label: "CTA",
+    value: "cta"
+  },
+  link: {
+    label: "Link",
+    value: "link"
+  },
+  custom: {
+    label: "Custom",
+    value: "custom"
+  }
+};
 var linkOptions = {
   reference: {
     label: "Internal link",
@@ -308,6 +330,7 @@ var linkField = createField2((props) => {
           layout: "horizontal",
           width: "50%"
         },
+        required: true,
         defaultValue: linkOptions.reference.value,
         options: Object.values(linkOptions)
       }),
@@ -326,25 +349,9 @@ var linkField = createField2((props) => {
   const appearance = selectField({
     name: "appearance",
     label: "Appearance",
+    required: true,
     defaultValue: "default",
-    options: [
-      {
-        label: "Default",
-        value: "default"
-      },
-      {
-        label: "Button",
-        value: "button"
-      },
-      {
-        label: "CTA",
-        value: "cta"
-      },
-      {
-        label: "Link",
-        value: "link"
-      }
-    ]
+    options: Object.values(linkAppearanceOptions)
   });
   const types = [
     internalLinkField({
