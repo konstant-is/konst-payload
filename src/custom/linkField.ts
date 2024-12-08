@@ -14,6 +14,29 @@ import { createField, deepMerge } from "@/utils";
 
 
 type LinkTypes = "reference" | "custom";
+type LinkAppearance = "default" | "button" | "cta" | "link" | "custom";
+const linkAppearanceOptions: Record<LinkAppearance, { label: string; value: string }> = {
+  default: {
+    label: "Default",
+    value: "default",
+  },
+  button: {
+    label: "Button",
+    value: "button",
+  },
+  cta: {
+    label: "CTA",
+    value: "cta",
+  },
+  link: {
+    label: "Link",
+    value: "link",
+  },
+  custom: {
+    label: "Custom",
+    value: "custom",
+  },
+}
 
 const linkOptions: Record<LinkTypes, { label: string; value: string }> = {
   reference: {
@@ -27,10 +50,9 @@ const linkOptions: Record<LinkTypes, { label: string; value: string }> = {
 };
 
 
-
 export const linkField= createField<{
   relationTo: string | string[];
-  appearance?: "default" | "button" | "cta" | "link" | "custom";
+  appearance?: LinkAppearance
 }>((props) => {
   const options = rowField({
     fields: [
@@ -40,12 +62,12 @@ export const linkField= createField<{
           layout: "horizontal",
           width: "50%",
         },
+        required: true,
         defaultValue: linkOptions.reference.value,
         options: Object.values(linkOptions),
       }),
       checkboxField({
         name: "newTab",
-
         admin: {
           style: {
             alignSelf: "flex-end",
@@ -60,25 +82,9 @@ export const linkField= createField<{
   const appearance = selectField({
     name: "appearance",
     label: "Appearance",
+    required: true,
     defaultValue: "default",
-    options: [
-      {
-        label: "Default",
-        value: "default",
-      },
-      {
-        label: "Button",
-        value: "button",
-      },
-      {
-        label: "CTA",
-        value: "cta",
-      },
-      {
-        label: "Link",
-        value: "link",
-      },
-    ],
+    options: Object.values(linkAppearanceOptions)
   });
 
   const types: Field[] = [
