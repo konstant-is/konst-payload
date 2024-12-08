@@ -52,7 +52,6 @@ bump_version() {
   log "Bumping version..."
   pnpm run ci:versionBump
   echo ""
-  git push --tags
 }
 
 log_summary() {
