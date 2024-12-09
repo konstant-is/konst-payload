@@ -17,7 +17,7 @@ export type CreateFieldProps<P = unknown> = P & {
 
 type FieldCreationFunction<P = unknown> = (props: CreateFieldProps<P>) => Field;
 
-export function createField<P = {}>(fieldFn: FieldCreationFunction<P>) {
+export function createField<P>(fieldFn: FieldCreationFunction<P>) {
   return (props: CreateFieldProps<P> = {} as CreateFieldProps<P>) => {
     const field = fieldFn(props);
     return deepMerge(field, props.overrides || {});

@@ -9,7 +9,6 @@ import {
   useForm,
   useFormFields,
 } from "@payloadcms/ui";
-
 import { TextFieldClientProps } from "payload";
 
 import "./slug.scss";
