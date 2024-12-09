@@ -1,5 +1,5 @@
 import { CollectionConfig, GlobalConfig, Block } from 'payload';
-export { C as CreateFieldProps, c as createField } from './createField-CvxlUHg2.js';
+export { C as CreateFieldProps, c as createField } from './createField-BqTtYPfj.js';
 
 declare const createCollectionConfig: (config: CollectionConfig) => CollectionConfig;
 declare const createGlobalConfig: (config: GlobalConfig) => GlobalConfig;

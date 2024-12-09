@@ -13,6 +13,6 @@ type CreateFieldProps<P = unknown> = P & {
     localized?: boolean;
 };
 type FieldCreationFunction<P = unknown> = (props: CreateFieldProps<P>) => Field;
-declare function createField<P = {}>(fieldFn: FieldCreationFunction<P>): (props?: CreateFieldProps<P>) => Field;
+declare function createField<P>(fieldFn: FieldCreationFunction<P>): (props?: CreateFieldProps<P>) => Field;
 
 export { type CreateFieldProps as C, createField as c };

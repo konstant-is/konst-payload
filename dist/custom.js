@@ -12,12 +12,12 @@ import {
   relationshipField,
   rowField,
   selectField,
-  textField
+  textField as textField2
 } from "./chunk-L66BIA32.js";
 import {
   createField,
   deepMerge
-} from "./chunk-4JYN5NNR.js";
+} from "./chunk-US6Y2BBA.js";
 
 // src/custom/addressField.ts
 var addressField = createField((props) => {
@@ -38,13 +38,13 @@ var addressField = createField((props) => {
     fields: [
       rowField({
         fields: [
-          textField({
+          textField2({
             name: "addressLine1",
             label: "Address",
             localized: false,
             required: false
           }),
-          textField({
+          textField2({
             name: "addressLine2",
             label: "Address extra",
             localized: false,
@@ -57,7 +57,7 @@ var addressField = createField((props) => {
       }),
       rowField({
         fields: [
-          textField({
+          textField2({
             name: "state",
             label: "State",
             localized: false,
@@ -66,7 +66,7 @@ var addressField = createField((props) => {
               condition: (_, siblingData) => fieldCondition("state")
             }
           }),
-          textField({
+          textField2({
             name: "city",
             label: "City",
             localized: false,
@@ -75,7 +75,7 @@ var addressField = createField((props) => {
               condition: (_, siblingData) => fieldCondition("city")
             }
           }),
-          textField({
+          textField2({
             name: "postalCode",
             label: "Postal Code",
             localized: false,
@@ -172,7 +172,7 @@ var linkField = createField((props) => {
       condition: (_, siblingData) => siblingData?.type === "custom"
     })
   ];
-  const label = textField({
+  const label = textField2({
     name: "label",
     label: "Link Text",
     required: true
@@ -187,7 +187,7 @@ var linkField = createField((props) => {
   return deepMerge(field, props.overrides);
 });
 var externalLinkField = createField((props) => {
-  const field = textField({
+  const field = textField2({
     name: "url",
     admin: {
       condition: props.condition,
@@ -237,11 +237,10 @@ var slugField = (fieldToUse = "title", overrides = {}) => {
     },
     ...checkboxOverrides
   };
-  const slugField2 = {
+  const field = textField({
     name: "slug",
-    type: "text",
-    index: true,
     label: "Slug",
+    index: true,
     ...slugOverrides || {},
     hooks: {
       // Kept this in for hook or API based updates
@@ -253,6 +252,7 @@ var slugField = (fieldToUse = "title", overrides = {}) => {
       components: {
         Field: {
           path: "@konstant/payload/components#SlugComponent",
+          //
           clientProps: {
             fieldToUse,
             checkboxFieldPath: checkBoxField.name
@@ -260,8 +260,8 @@ var slugField = (fieldToUse = "title", overrides = {}) => {
         }
       }
     }
-  };
-  return [slugField2, checkBoxField];
+  });
+  return [field, checkBoxField];
 };
 
 // src/custom/timeField.ts
@@ -287,7 +287,7 @@ var timeField = createField((props) => {
 // src/custom/urlField.ts
 var urlField = createField((props) => {
   const required = props?.required ?? true;
-  return textField({
+  return textField2({
     name: props?.name ?? "url",
     label: props?.label ?? "Url",
     hasMany: false,
@@ -334,7 +334,7 @@ var openingHoursField = createField((props) => {
         defaultValue: [],
         options: dayOptions
       }),
-      textField({ name: "label", required: true }),
+      textField2({ name: "label", required: true }),
       ...timeFields()
     ]
   });
@@ -342,7 +342,7 @@ var openingHoursField = createField((props) => {
     name: "custom",
     label: "Custom Opening Hours",
     fields: [
-      textField({ name: "label", required: true }),
+      textField2({ name: "label", required: true }),
       dateField({
         name: "date",
         label: "Date",
@@ -363,11 +363,11 @@ var openingHoursField = createField((props) => {
     fields: [
       rowField({
         fields: [
-          textField({
+          textField2({
             name: "openLabel",
             admin: { width: "50%" }
           }),
-          textField({
+          textField2({
             name: "closedLabel",
             admin: { width: "50%" }
           })
@@ -375,11 +375,11 @@ var openingHoursField = createField((props) => {
       }),
       rowField({
         fields: [
-          textField({
+          textField2({
             name: "openNowLabel",
             admin: { width: "50%" }
           }),
-          textField({
+          textField2({
             name: "closedNowLabel",
             admin: { width: "50%" }
           })
@@ -401,7 +401,7 @@ var timeFields = () => {
       )
     }),
     checkboxField({ name: "isClosed", label: "Closed whole day" }),
-    textField({
+    textField2({
       name: "closedLabel",
       admin: { condition: (_, siblingData) => siblingData.isClosed }
     })
