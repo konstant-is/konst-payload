@@ -368,9 +368,11 @@ var linkField = createField2((props) => {
     required: true
   });
   const field = groupField({
-    name: "link",
+    name: props.name || "link",
+    label: props.label || "Link",
     admin: {
-      hideGutter: true
+      hideGutter: true,
+      condition: props.condition
     },
     fields: [options, ...types, label, appearance]
   });
