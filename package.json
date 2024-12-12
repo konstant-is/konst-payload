@@ -21,14 +21,15 @@
     "clean": "rm -rf dist",
     "prepare": "husky",
     "ci:versionBump": "pnpm version patch",
-    "ci:getVersion": "node -p \"require('./package.json').version\" --silent"
+    "ci:getVersion": "node -p \"require('./package.json').version\" --silent",
+    "reinstall": "rm -rf node_modules && rm -rf pnpm-lock.yaml && pnpm install"
   },
   "dependencies": {
-    "@payloadcms/next": "latest",
-    "@payloadcms/richtext-lexical": "latest",
-    "@payloadcms/ui": "latest",
+    "@payloadcms/next": "3.6.0",
+    "@payloadcms/richtext-lexical": "3.6.0",
+    "@payloadcms/ui": "3.6.0",
     "next": "15.0.0",
-    "payload": "latest",
+    "payload": "3.6.0",
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
     "sharp": "0.32.6",

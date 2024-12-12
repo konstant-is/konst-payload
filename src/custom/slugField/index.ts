@@ -1,6 +1,7 @@
 
+import { textField } from "@/fields/fields";
 import { formatSlug } from "@/lib/utils";
-import type { CheckboxField, FieldHook, TextField } from "payload";
+import type { CheckboxField, Field, FieldHook, TextField } from "payload";
 
 export const formatSlugHook =
   (fallback: string): FieldHook =>
@@ -28,7 +29,7 @@ type Overrides = {
 type Slug = (
   fieldToUse?: string,
   overrides?: Overrides
-) => [TextField, CheckboxField];
+) => [Field, Field];
 
 export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
   const { slugOverrides, checkboxOverrides } = overrides;
@@ -44,8 +45,7 @@ export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
     ...checkboxOverrides,
   };
 
-  // Expect ts error here because of typescript mismatching Partial<TextField> with TextField
-  // @ts-expect-error
+  
   const field = textField({
     name: "slug",
     label: "Slug",
