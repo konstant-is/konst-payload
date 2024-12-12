@@ -41,7 +41,7 @@ type Overrides = {
     slugOverrides?: Partial<TextField>;
     checkboxOverrides?: Partial<CheckboxField>;
 };
-type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField];
+type Slug = (fieldToUse?: string, overrides?: Overrides) => [Field, Field];
 declare const slugField: Slug;
 
 declare const timeField: (props?: {

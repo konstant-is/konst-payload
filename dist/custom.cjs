@@ -62,7 +62,7 @@ var createField = (field) => {
   const merged = { ...config, ...field };
   return merged;
 };
-var textField2 = (props) => {
+var textField = (props) => {
   const { hasMany = false, validate, ...rest } = props;
   if (hasMany) {
     return createField({
@@ -228,13 +228,13 @@ var addressField = createField2((props) => {
     fields: [
       rowField({
         fields: [
-          textField2({
+          textField({
             name: "addressLine1",
             label: "Address",
             localized: false,
             required: false
           }),
-          textField2({
+          textField({
             name: "addressLine2",
             label: "Address extra",
             localized: false,
@@ -247,7 +247,7 @@ var addressField = createField2((props) => {
       }),
       rowField({
         fields: [
-          textField2({
+          textField({
             name: "state",
             label: "State",
             localized: false,
@@ -256,7 +256,7 @@ var addressField = createField2((props) => {
               condition: (_, siblingData) => fieldCondition("state")
             }
           }),
-          textField2({
+          textField({
             name: "city",
             label: "City",
             localized: false,
@@ -265,7 +265,7 @@ var addressField = createField2((props) => {
               condition: (_, siblingData) => fieldCondition("city")
             }
           }),
-          textField2({
+          textField({
             name: "postalCode",
             label: "Postal Code",
             localized: false,
@@ -362,7 +362,7 @@ var linkField = createField2((props) => {
       condition: (_, siblingData) => siblingData?.type === "custom"
     })
   ];
-  const label = textField2({
+  const label = textField({
     name: "label",
     label: "Link Text",
     required: true
@@ -379,7 +379,7 @@ var linkField = createField2((props) => {
   return deepMerge(field, props.overrides);
 });
 var externalLinkField = createField2((props) => {
-  const field = textField2({
+  const field = textField({
     name: "url",
     admin: {
       condition: props.condition,
@@ -487,7 +487,7 @@ var timeField = createField2((props) => {
 // src/custom/urlField.ts
 var urlField = createField2((props) => {
   const required = props?.required ?? true;
-  return textField2({
+  return textField({
     name: props?.name ?? "url",
     label: props?.label ?? "Url",
     hasMany: false,
@@ -534,7 +534,7 @@ var openingHoursField = createField2((props) => {
         defaultValue: [],
         options: dayOptions
       }),
-      textField2({ name: "label", required: true }),
+      textField({ name: "label", required: true }),
       ...timeFields()
     ]
   });
@@ -542,7 +542,7 @@ var openingHoursField = createField2((props) => {
     name: "custom",
     label: "Custom Opening Hours",
     fields: [
-      textField2({ name: "label", required: true }),
+      textField({ name: "label", required: true }),
       dateField({
         name: "date",
         label: "Date",
@@ -563,11 +563,11 @@ var openingHoursField = createField2((props) => {
     fields: [
       rowField({
         fields: [
-          textField2({
+          textField({
             name: "openLabel",
             admin: { width: "50%" }
           }),
-          textField2({
+          textField({
             name: "closedLabel",
             admin: { width: "50%" }
           })
@@ -575,11 +575,11 @@ var openingHoursField = createField2((props) => {
       }),
       rowField({
         fields: [
-          textField2({
+          textField({
             name: "openNowLabel",
             admin: { width: "50%" }
           }),
-          textField2({
+          textField({
             name: "closedNowLabel",
             admin: { width: "50%" }
           })
@@ -601,7 +601,7 @@ var timeFields = () => {
       )
     }),
     checkboxField({ name: "isClosed", label: "Closed whole day" }),
-    textField2({
+    textField({
       name: "closedLabel",
       admin: { condition: (_, siblingData) => siblingData.isClosed }
     })
