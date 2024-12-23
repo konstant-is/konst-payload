@@ -1,8 +1,9 @@
-import { Field, TextField, TextareaField, RichTextField, SelectField, TabsField, Tab, BlocksField, UploadField, GroupField, RowField, RadioField, CheckboxField, RelationshipField, ArrayField, DateField, CollapsibleField, PointField, EmailField } from 'payload';
+import { Field, TextField, TextareaField, NumberField, RichTextField, SelectField, TabsField, Tab, BlocksField, UploadField, GroupField, RowField, RadioField, CheckboxField, RelationshipField, ArrayField, DateField, CollapsibleField, PointField, EmailField } from 'payload';
 
 declare const field: (props: Field) => Field;
 declare const textField: (props: Omit<TextField, "type">) => Field;
 declare const textareaField: (props: Omit<TextareaField, "type">) => Field;
+declare const numberField: (props: Omit<NumberField, "type">) => Field;
 declare const richTextField: (props: Omit<RichTextField, "type">) => Field;
 declare const selectField: (props: Omit<SelectField, "type">) => Field;
 declare const tabsField: (props: Omit<TabsField, "type">) => Field;
@@ -20,4 +21,4 @@ declare const collapsibleField: (props: Omit<CollapsibleField, "type">) => Colla
 declare const pointField: (props: Omit<PointField, "type">) => Field;
 declare const emailField: (props: Omit<EmailField, "type">) => Field;
 
-export { arrayField, blocksField, checkboxField, collapsibleField, dateField, emailField, field, groupField, pointField, radioField, relationshipField, richTextField, rowField, selectField, tabField, tabsField, textField, textareaField, uploadField };
+export { arrayField, blocksField, checkboxField, collapsibleField, dateField, emailField, field, groupField, numberField, pointField, radioField, relationshipField, richTextField, rowField, selectField, tabField, tabsField, textField, textareaField, uploadField };

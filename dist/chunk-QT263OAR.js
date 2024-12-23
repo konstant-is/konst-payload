@@ -44,6 +44,25 @@ var textareaField = (props) => {
     ...props
   });
 };
+var numberField = (props) => {
+  const { hasMany = false, validate, ...rest } = props;
+  if (hasMany) {
+    return createField({
+      type: "number",
+      hasMany: true,
+      validate,
+      // Ensure validate is correctly typed
+      ...rest
+    });
+  }
+  const { maxRows, minRows, ...restWithoutMaxMin } = rest;
+  return createField({
+    type: "number",
+    hasMany: false,
+    validate,
+    ...restWithoutMaxMin
+  });
+};
 var richTextField = (props) => {
   return createField({
     type: "richText",
@@ -208,6 +227,7 @@ export {
   field,
   textField,
   textareaField,
+  numberField,
   richTextField,
   selectField,
   tabsField,
@@ -225,4 +245,4 @@ export {
   pointField,
   emailField
 };
-//# sourceMappingURL=chunk-L66BIA32.js.map
+//# sourceMappingURL=chunk-QT263OAR.js.map

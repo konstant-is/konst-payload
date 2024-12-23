@@ -7,6 +7,7 @@ import {
   emailField,
   field,
   groupField,
+  numberField,
   pointField,
   radioField,
   relationshipField,
@@ -18,7 +19,7 @@ import {
   textField,
   textareaField,
   uploadField
-} from "./chunk-L66BIA32.js";
+} from "./chunk-QT263OAR.js";
 export {
   arrayField,
   blocksField,
@@ -28,6 +29,7 @@ export {
   emailField,
   field,
   groupField,
+  numberField,
   pointField,
   radioField,
   relationshipField,

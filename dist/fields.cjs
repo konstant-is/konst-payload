@@ -28,6 +28,7 @@ __export(fields_exports, {
   emailField: () => emailField,
   field: () => field,
   groupField: () => groupField,
+  numberField: () => numberField,
   pointField: () => pointField,
   radioField: () => radioField,
   relationshipField: () => relationshipField,
@@ -86,6 +87,25 @@ var textareaField = (props) => {
   return createField({
     type: "textarea",
     ...props
+  });
+};
+var numberField = (props) => {
+  const { hasMany = false, validate, ...rest } = props;
+  if (hasMany) {
+    return createField({
+      type: "number",
+      hasMany: true,
+      validate,
+      // Ensure validate is correctly typed
+      ...rest
+    });
+  }
+  const { maxRows, minRows, ...restWithoutMaxMin } = rest;
+  return createField({
+    type: "number",
+    hasMany: false,
+    validate,
+    ...restWithoutMaxMin
   });
 };
 var richTextField = (props) => {
@@ -257,6 +277,7 @@ var emailField = (props) => {
   emailField,
   field,
   groupField,
+  numberField,
   pointField,
   radioField,
   relationshipField,
