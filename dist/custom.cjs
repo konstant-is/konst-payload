@@ -144,9 +144,16 @@ var relationshipField = (props) => {
       // Ensure relationTo is correctly typed
     });
   }
-  const { max, min, maxRows, minRows, ...restWithoutMaxMinRows } = rest;
   return createField({
-    ...restWithoutMaxMinRows,
+    ...rest,
+    maxRows: void 0,
+    // Explicitly set maxRows to undefined
+    minRows: void 0,
+    // Explicitly set minRows to undefined
+    min: void 0,
+    // Explicitly set min to undefined
+    max: void 0,
+    // Explicitly set max to undefined
     type: "relationship",
     hasMany: false,
     validate,

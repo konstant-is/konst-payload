@@ -55,12 +55,13 @@ var numberField = (props) => {
       ...rest
     });
   }
-  const { maxRows, minRows, ...restWithoutMaxMin } = rest;
   return createField({
     type: "number",
     hasMany: false,
     validate,
-    ...restWithoutMaxMin
+    ...rest,
+    maxRows: void 0,
+    minRows: void 0
   });
 };
 var richTextField = (props) => {
@@ -116,9 +117,10 @@ var uploadField = (props) => {
       // Include minRows if hasMany is true
     });
   }
-  const { max, min, ...restWithoutMaxMin } = rest;
   return createField({
-    ...restWithoutMaxMin,
+    ...rest,
+    max: void 0,
+    min: void 0,
     type: "upload",
     hasMany: false,
     validate,
@@ -171,9 +173,16 @@ var relationshipField = (props) => {
       // Ensure relationTo is correctly typed
     });
   }
-  const { max, min, maxRows, minRows, ...restWithoutMaxMinRows } = rest;
   return createField({
-    ...restWithoutMaxMinRows,
+    ...rest,
+    maxRows: void 0,
+    // Explicitly set maxRows to undefined
+    minRows: void 0,
+    // Explicitly set minRows to undefined
+    min: void 0,
+    // Explicitly set min to undefined
+    max: void 0,
+    // Explicitly set max to undefined
     type: "relationship",
     hasMany: false,
     validate,
@@ -245,4 +254,4 @@ export {
   pointField,
   emailField
 };
-//# sourceMappingURL=chunk-QT263OAR.js.map
+//# sourceMappingURL=chunk-RH4HPZ33.js.map
