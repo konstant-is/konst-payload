@@ -7,6 +7,9 @@ import {
   EmailField,
   Field,
   GroupField,
+  NumberField,
+  NumberFieldManyValidation,
+  NumberFieldSingleValidation,
   PointField,
   RadioField,
   RelationshipField,
@@ -67,6 +70,26 @@ export const textareaField = (props: Omit<TextareaField, "type">): Field => {
     ...props,
   });
 };
+
+export const numberField = (props: Omit<NumberField, "type">): Field => {
+  const { hasMany = false, validate, ...rest } = props;
+  if (hasMany) {
+    return createField({
+      type: "number",
+      hasMany: true,
+      validate: validate as NumberFieldManyValidation, // Ensure validate is correctly typed
+      ...rest,
+    });
+  }
+
+  const { maxRows, minRows, ...restWithoutMaxMin } = rest;
+  return createField({
+    type: "number",
+    hasMany: false,
+    validate: validate as NumberFieldSingleValidation,
+    ...restWithoutMaxMin,
+  });
+}
 
 export const richTextField = (props: Omit<RichTextField, "type">): Field => {
   return createField({
