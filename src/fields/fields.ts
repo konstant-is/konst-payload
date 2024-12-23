@@ -82,12 +82,14 @@ export const numberField = (props: Omit<NumberField, "type">): Field => {
     });
   }
 
-  const { maxRows, minRows, ...restWithoutMaxMin } = rest;
+  
   return createField({
     type: "number",
     hasMany: false,
     validate: validate as NumberFieldSingleValidation,
-    ...restWithoutMaxMin,
+    ...rest,
+    maxRows: undefined,
+    minRows: undefined,
   });
 }
 
@@ -148,10 +150,12 @@ export const uploadField = (props: Omit<UploadField, "type">): Field => {
     });
   }
 
-  const { max, min, ...restWithoutMaxMin } = rest;
+  
 
   return createField({
-    ...restWithoutMaxMin,
+    ...rest,
+    max: undefined,
+    min: undefined,
     type: "upload",
     hasMany: false,
     validate: validate as UploadFieldSingleValidation, // Ensure validate is correctly typed
@@ -208,10 +212,14 @@ export const relationshipField = (
   }
 
   // Remove max, min, maxRows, and minRows properties when hasMany is false
-  const { max, min, maxRows, minRows, ...restWithoutMaxMinRows } = rest;
+  // const { max, min, ...restWithoutMaxMinRows } = rest;
 
   return createField({
-    ...restWithoutMaxMinRows,
+    ...rest,
+    maxRows: undefined, // Explicitly set maxRows to undefined
+    minRows: undefined, // Explicitly set minRows to undefined
+    min: undefined, // Explicitly set min to undefined
+    max: undefined, // Explicitly set max to undefined
     type: "relationship",
     hasMany: false,
     validate: validate as RelationshipFieldSingleValidation, // Ensure validate is correctly typed
