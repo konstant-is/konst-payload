@@ -40,6 +40,7 @@ __export(fields_exports, {
   tabsField: () => tabsField,
   textField: () => textField,
   textareaField: () => textareaField,
+  uiField: () => uiField,
   uploadField: () => uploadField
 });
 module.exports = __toCommonJS(fields_exports);
@@ -283,6 +284,12 @@ var jsonField = (props) => {
     ...props
   });
 };
+var uiField = (props) => {
+  return createField({
+    type: "ui",
+    ...props
+  });
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   arrayField,
@@ -305,6 +312,7 @@ var jsonField = (props) => {
   tabsField,
   textField,
   textareaField,
+  uiField,
   uploadField
 });
 //# sourceMappingURL=fields.cjs.map

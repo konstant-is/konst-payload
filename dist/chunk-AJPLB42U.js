@@ -237,6 +237,12 @@ var jsonField = (props) => {
     ...props
   });
 };
+var uiField = (props) => {
+  return createField({
+    type: "ui",
+    ...props
+  });
+};
 
 export {
   field,
@@ -259,6 +265,7 @@ export {
   collapsibleField,
   pointField,
   emailField,
-  jsonField
+  jsonField,
+  uiField
 };
-//# sourceMappingURL=chunk-JESD2RIM.js.map
+//# sourceMappingURL=chunk-AJPLB42U.js.map

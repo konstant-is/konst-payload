@@ -19,8 +19,9 @@ import {
   tabsField,
   textField,
   textareaField,
+  uiField,
   uploadField
-} from "./chunk-JESD2RIM.js";
+} from "./chunk-AJPLB42U.js";
 export {
   arrayField,
   blocksField,
@@ -42,6 +43,7 @@ export {
   tabsField,
   textField,
   textareaField,
+  uiField,
   uploadField
 };
 //# sourceMappingURL=fields.js.map
