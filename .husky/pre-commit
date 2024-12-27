@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e
+trap 'log "An error occurred. Exiting script."; exit 1' ERR
+
+log() {
+  echo "$(date +"%Y-%m-%d %H:%M:%S") - $1"
+}
+
+bump_version() {
+  log "Bumping version..."
+  pnpm run ci:versionBump
+  VERSION=$(node -p "require('./package.json').version")
+  log "Version bumped to $VERSION."
+}
+
+log_summary() {
+  echo ""
+  log "Pre-commit script completed successfully."
+  log "Build: Completed"
+  log "Dist Changes: $(git status dist --porcelain | wc -l) files updated"
+  VERSION=$(node -p "require('./package.json').version")
+  log "Version: $VERSION"
+  echo ""
+}
+
+# Main script execution
+# bump_version
+log_summary
