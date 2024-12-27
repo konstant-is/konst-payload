@@ -6,6 +6,14 @@ log() {
   echo "$(date +"%Y-%m-%d %H:%M:%S") - $1"
 }
 
+ensure_clean_working_directory() {
+  if ! git diff-index --quiet HEAD --; then
+    log "Working directory is not clean. Staging all changes..."
+    git add .
+    git commit -m "chore: prepare for version bump" --no-verify || true
+  fi
+}
+
 bump_version() {
   log "Bumping version..."
   pnpm run ci:versionBump
@@ -24,5 +32,6 @@ log_summary() {
 }
 
 # Main script execution
-# bump_version
+ensure_clean_working_directory
+bump_version
 log_summary
