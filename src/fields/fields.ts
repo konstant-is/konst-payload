@@ -27,6 +27,7 @@ import {
   TextField,
   TextFieldManyValidation,
   TextFieldSingleValidation,
+  UIField,
   UploadField,
   UploadFieldManyValidation,
   UploadFieldSingleValidation,
@@ -277,6 +278,13 @@ export const emailField = (props: Omit<EmailField, "type">): Field => {
 export const jsonField = (props: Omit<JSONField, "type">): Field => {
   return createField({
     type: "json",
+    ...props,
+  });
+}
+
+export const uiField = (props: Omit<UIField, "type">): Field => {
+  return createField({
+    type: "ui",
     ...props,
   });
 }
