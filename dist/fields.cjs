@@ -28,6 +28,7 @@ __export(fields_exports, {
   emailField: () => emailField,
   field: () => field,
   groupField: () => groupField,
+  jsonField: () => jsonField,
   numberField: () => numberField,
   pointField: () => pointField,
   radioField: () => radioField,
@@ -276,6 +277,12 @@ var emailField = (props) => {
     ...props
   });
 };
+var jsonField = (props) => {
+  return createField({
+    type: "json",
+    ...props
+  });
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   arrayField,
@@ -286,6 +293,7 @@ var emailField = (props) => {
   emailField,
   field,
   groupField,
+  jsonField,
   numberField,
   pointField,
   radioField,

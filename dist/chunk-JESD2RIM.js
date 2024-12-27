@@ -231,6 +231,12 @@ var emailField = (props) => {
     ...props
   });
 };
+var jsonField = (props) => {
+  return createField({
+    type: "json",
+    ...props
+  });
+};
 
 export {
   field,
@@ -252,6 +258,7 @@ export {
   dateField,
   collapsibleField,
   pointField,
-  emailField
+  emailField,
+  jsonField
 };
-//# sourceMappingURL=chunk-RH4HPZ33.js.map
+//# sourceMappingURL=chunk-JESD2RIM.js.map
