@@ -1,6 +1,6 @@
 {
   "name": "@konstant/payload",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "description": "Payload CMS helpers and utils",
   "type": "module",
   "main": "dist/index.cjs.js",
