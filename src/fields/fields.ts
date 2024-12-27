@@ -7,6 +7,7 @@ import {
   EmailField,
   Field,
   GroupField,
+  JSONField,
   NumberField,
   NumberFieldManyValidation,
   NumberFieldSingleValidation,
@@ -273,3 +274,9 @@ export const emailField = (props: Omit<EmailField, "type">): Field => {
   });
 };
 
+export const jsonField = (props: Omit<JSONField, "type">): Field => {
+  return createField({
+    type: "json",
+    ...props,
+  });
+}
