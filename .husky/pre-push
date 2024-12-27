@@ -6,6 +6,24 @@ log() {
   echo "$(date +"%Y-%m-%d %H:%M:%S") - $1"
 }
 
+is_tag_push() {
+    if [ "$GIT_PUSH_OPTION_COUNT" -gt 0 ]; then
+    for i in $(seq 0 $(($GIT_PUSH_OPTION_COUNT - 1))); do
+      if [ "${GIT_PUSH_OPTION_$i}" = "--tags" ]; then
+        return 0
+      fi
+    done
+  fi
+
+  if git rev-parse --verify HEAD >/dev/null 2>&1; then
+    CURRENT_REF=$(git symbolic-ref -q HEAD || git describe --tags --exact-match)
+    if [[ "$CURRENT_REF" =~ ^refs/tags/ ]]; then
+      return 0
+    fi
+  fi
+  return 1
+}
+
 run_build() {
   log "Running build process..."
   if ! pnpm build; then
@@ -25,16 +43,16 @@ commit_dist_changes() {
   fi
 }
 
-# bump_version() {
-#   if [ -n "$(git status --porcelain)" ]; then
-#     log "Changes detected in project. Skipping version bump."
-#     return
-#   fi
+bump_version() {
+  if [ -n "$(git status --porcelain)" ]; then
+    log "Changes detected in project. Skipping version bump."
+    return
+  fi
 
-#   log "Bumping version..."
-#   pnpm run ci:versionBump
-#   echo ""
-# }
+  log "Bumping version..."
+  pnpm run ci:versionBump
+  echo ""
+}
 
 log_summary() {
   echo ""
@@ -47,13 +65,13 @@ log_summary() {
   echo ""
 }
 
-# # Main script execution
-# if is_tag_push; then
-#   log "Tag push detected. Ignoring build process."
-#   exit 0
-# fi
+# Main script execution
+if is_tag_push; then
+  log "Tag push detected. Ignoring build process."
+  exit 0
+fi
 
 run_build
 commit_dist_changes
-# bump_version
+bump_version
 log_summary
